@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ysh-Eg-LdZ" customClass="LSCover">
+            <rect key="frame" x="0.0" y="0.0" width="295" height="295"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LUF-Yx-gNf">
+                    <rect key="frame" x="0.0" y="95" width="295" height="200"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qK3-9S-2hk">
+                            <rect key="frame" x="205" y="8" width="60" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="N17-vv-S4d"/>
+                            </constraints>
+                            <state key="normal" title="新建列表">
+                                <color key="titleColor" red="0.39768835769999999" green="0.890176619" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="newListClick:" destination="ysh-Eg-LdZ" eventType="touchUpInside" id="EUP-u2-8Sn"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加到歌单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVt-UL-u2A">
+                            <rect key="frame" x="30" y="8" width="75" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="j6T-H7-SWC"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.18587309590000001" green="0.78324667849999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="scK-OR-sok" userLabel="线">
+                            <rect key="frame" x="0.0" y="0.0" width="295" height="2"/>
+                            <color key="backgroundColor" red="0.18587309590000001" green="0.78324667849999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="2" id="QJk-zd-fkR"/>
+                            </constraints>
+                        </view>
+                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ph-mU-ciH" userLabel="黑线">
+                            <rect key="frame" x="0.0" y="43" width="295" height="1"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="6AY-FA-eg2"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcf-nr-is2">
+                            <rect key="frame" x="30" y="170" width="235" height="25"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" title="取消"/>
+                            <connections>
+                                <action selector="cancelClick:" destination="ysh-Eg-LdZ" eventType="touchUpInside" id="8qa-lx-8qu"/>
+                            </connections>
+                        </button>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hRS-3C-zDb">
+                            <rect key="frame" x="30" y="44" width="235" height="116"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="mcf-nr-is2" secondAttribute="bottom" constant="5" id="1WK-ib-Di9"/>
+                        <constraint firstAttribute="trailing" secondItem="3ph-mU-ciH" secondAttribute="trailing" id="2FU-3A-LdY"/>
+                        <constraint firstAttribute="trailing" secondItem="mcf-nr-is2" secondAttribute="trailing" constant="30" id="9lJ-9F-xqh"/>
+                        <constraint firstItem="mcf-nr-is2" firstAttribute="leading" secondItem="LUF-Yx-gNf" secondAttribute="leading" constant="30" id="DPF-iK-KFJ"/>
+                        <constraint firstItem="hRS-3C-zDb" firstAttribute="leading" secondItem="LUF-Yx-gNf" secondAttribute="leading" constant="30" id="Dia-CX-bbU"/>
+                        <constraint firstAttribute="trailing" secondItem="scK-OR-sok" secondAttribute="trailing" id="G54-bY-GJm"/>
+                        <constraint firstItem="hRS-3C-zDb" firstAttribute="top" secondItem="3ph-mU-ciH" secondAttribute="bottom" id="Hgp-mv-i9s"/>
+                        <constraint firstItem="rVt-UL-u2A" firstAttribute="leading" secondItem="LUF-Yx-gNf" secondAttribute="leading" constant="30" id="Ohk-M7-uYN"/>
+                        <constraint firstItem="rVt-UL-u2A" firstAttribute="top" secondItem="scK-OR-sok" secondAttribute="bottom" constant="6" id="U6l-rW-yPJ"/>
+                        <constraint firstItem="3ph-mU-ciH" firstAttribute="leading" secondItem="LUF-Yx-gNf" secondAttribute="leading" id="Uc8-hx-Cfs"/>
+                        <constraint firstItem="mcf-nr-is2" firstAttribute="top" secondItem="hRS-3C-zDb" secondAttribute="bottom" constant="10" id="VOO-wJ-Y6z"/>
+                        <constraint firstItem="3ph-mU-ciH" firstAttribute="top" secondItem="rVt-UL-u2A" secondAttribute="bottom" constant="10" id="Vxf-1G-dGz"/>
+                        <constraint firstItem="qK3-9S-2hk" firstAttribute="top" secondItem="scK-OR-sok" secondAttribute="bottom" constant="6" id="eSO-XY-gMT"/>
+                        <constraint firstAttribute="height" constant="200" id="jZD-zU-Mvu"/>
+                        <constraint firstItem="scK-OR-sok" firstAttribute="leading" secondItem="LUF-Yx-gNf" secondAttribute="leading" id="kG4-Ob-j6h"/>
+                        <constraint firstAttribute="trailing" secondItem="hRS-3C-zDb" secondAttribute="trailing" constant="30" id="mbK-d5-wxe"/>
+                        <constraint firstItem="scK-OR-sok" firstAttribute="top" secondItem="LUF-Yx-gNf" secondAttribute="top" id="tlf-EJ-kro"/>
+                        <constraint firstItem="hRS-3C-zDb" firstAttribute="bottom" secondItem="LUF-Yx-gNf" secondAttribute="bottom" constant="-40" id="vKq-Vl-I5z"/>
+                        <constraint firstAttribute="trailing" secondItem="qK3-9S-2hk" secondAttribute="trailing" constant="30" id="yTE-Mn-Iil"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="tintColor" red="0.18587309590000001" green="0.78324667849999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="LUF-Yx-gNf" firstAttribute="centerY" secondItem="ysh-Eg-LdZ" secondAttribute="centerY" id="DAv-At-oTi"/>
+                <constraint firstItem="LUF-Yx-gNf" firstAttribute="centerY" secondItem="ysh-Eg-LdZ" secondAttribute="centerY" constant="167" id="Mrb-IT-g1t"/>
+                <constraint firstAttribute="bottom" secondItem="LUF-Yx-gNf" secondAttribute="bottom" id="p70-fv-bl1"/>
+                <constraint firstItem="LUF-Yx-gNf" firstAttribute="leading" secondItem="ysh-Eg-LdZ" secondAttribute="leading" id="rn9-W0-HW3"/>
+                <constraint firstAttribute="trailing" secondItem="LUF-Yx-gNf" secondAttribute="trailing" id="tnx-V9-Kys"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="DAv-At-oTi"/>
+                    <exclude reference="Mrb-IT-g1t"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="listView" destination="hRS-3C-zDb" id="W3A-Bb-YEz"/>
+                <outlet property="myView" destination="LUF-Yx-gNf" id="nWZ-4r-tdC"/>
+            </connections>
+            <point key="canvasLocation" x="206.5" y="309.5"/>
+        </view>
+    </objects>
+</document>
