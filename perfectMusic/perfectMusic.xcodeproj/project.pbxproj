@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		281D98EB1E482B0F00925D33 /* AccountManger.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 281D98EA1E482B0F00925D33 /* AccountManger.storyboard */; };
 		282FB3C71D2FFC26003FF370 /* LSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282FB3C61D2FFC26003FF370 /* LSMainViewController.m */; };
 		282FB3C91D2FFC6B003FF370 /* LSNavgitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282FB3C81D2FFC6B003FF370 /* LSNavgitionController.m */; };
 		490C2A161C4392F7002A117D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490C2A151C4392F7002A117D /* MediaPlayer.framework */; };
@@ -143,7 +144,6 @@
 		E4FA9B8B1BCE185E00FDB61F /* LSRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FA9B8A1BCE185E00FDB61F /* LSRightViewController.m */; };
 		E4FA9B921BCE421900FDB61F /* LSOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FA9B8F1BCE421900FDB61F /* LSOAuthViewController.m */; };
 		E4FA9B961BCE42E500FDB61F /* LSHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FA9B951BCE42E500FDB61F /* LSHttpTool.m */; };
-		E4FA9BA71BCE444700FDB61F /* AccountManger.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4FA9BA61BCE444700FDB61F /* AccountManger.storyboard */; };
 		E4FBA17C1BD2424700D36B65 /* LSChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FBA17B1BD2424700D36B65 /* LSChannel.m */; };
 		E4FBA1811BD2433000D36B65 /* LSChannelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FBA1801BD2433000D36B65 /* LSChannelTool.m */; };
 		E4FBA1841BD2443F00D36B65 /* LSChannelController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FBA1831BD2443F00D36B65 /* LSChannelController.m */; };
@@ -174,6 +174,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		281D98EA1E482B0F00925D33 /* AccountManger.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountManger.storyboard; sourceTree = "<group>"; };
 		282FB3C41D2FFBCC003FF370 /* LSNavgitionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSNavgitionController.h; sourceTree = "<group>"; };
 		282FB3C61D2FFC26003FF370 /* LSMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSMainViewController.m; sourceTree = "<group>"; };
 		282FB3C81D2FFC6B003FF370 /* LSNavgitionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSNavgitionController.m; sourceTree = "<group>"; };
@@ -435,7 +436,6 @@
 		E4FA9B8F1BCE421900FDB61F /* LSOAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSOAuthViewController.m; sourceTree = "<group>"; };
 		E4FA9B941BCE42E500FDB61F /* LSHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSHttpTool.h; sourceTree = "<group>"; };
 		E4FA9B951BCE42E500FDB61F /* LSHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSHttpTool.m; sourceTree = "<group>"; };
-		E4FA9BA61BCE444700FDB61F /* AccountManger.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AccountManger.storyboard; path = ../../OAuth/Resources/AccountManger.storyboard; sourceTree = "<group>"; };
 		E4FBA17A1BD2424700D36B65 /* LSChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSChannel.h; sourceTree = "<group>"; };
 		E4FBA17B1BD2424700D36B65 /* LSChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSChannel.m; sourceTree = "<group>"; };
 		E4FBA17F1BD2433000D36B65 /* LSChannelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSChannelTool.h; sourceTree = "<group>"; };
@@ -624,7 +624,7 @@
 		E402B9A41BCFA09400834C22 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E4FA9BA61BCE444700FDB61F /* AccountManger.storyboard */,
+				281D98EA1E482B0F00925D33 /* AccountManger.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1460,10 +1460,10 @@
 				4920FA631CB7610A0000D75B /* LSPlayerView.xib in Resources */,
 				E4FE15261BCD177F00F1723C /* MainPage.storyboard in Resources */,
 				E468298E1BD13619009B52C7 /* Channel.storyboard in Resources */,
+				281D98EB1E482B0F00925D33 /* AccountManger.storyboard in Resources */,
 				E42B7FC61BDA11E600AC50C3 /* MyMusic.xib in Resources */,
 				E4BF61C91BCD20100000892C /* myMusicSelList.plist in Resources */,
 				E4BF61C71BCD200A0000892C /* moreFunctionSelList.plist in Resources */,
-				E4FA9BA71BCE444700FDB61F /* AccountManger.storyboard in Resources */,
 				E480C9FE1BCC981600443F82 /* Assets.xcassets in Resources */,
 				E4FA9B4E1BCDEF4B00FDB61F /* MyMusic.storyboard in Resources */,
 				4920FA661CB7610A0000D75B /* playerView.bundle in Resources */,
