@@ -19,13 +19,27 @@ static int i=0;
 @implementation LSChannelTool
 +(void)getChannelInfoSuccess:(void(^)(NSArray*array))success failure:(void(^)(NSError*error))failure
 {
-    [LSHttpTool GET:@"http://www.douban.com/j/app/radio/channels" parameters:nil success:^(id responseObject) {
+    [LSHttpTool GET:@"http://fm.api.ttpod.com/radiolist?image_type=240_200&app=ttpod&v=v8.0.1.2015091618&uid=&mid=iPhone7%2C1&f=f320&s=s310&imsi=&hid=&splus=9.0&active=1&net=2&openudid=17d5bcecf6ab1038818fefba634092be93a2829c&idfa=A04F9D23-1399-4FBB-93B0-AE747E6715FC&utdid=Vfwq4CLLI7wDAIM4GEJ4Bkg3&alf=201200&bundle_id=com.ttpod.music&latitude=&longtitude=" parameters:nil success:^(id responseObject) {
 //        NSLog(@"%@",responseObject);
         
-        NSArray *arr=responseObject[@"channels"];
-        NSArray *channels=[LSChannel objectArrayWithKeyValuesArray:arr];
+        NSMutableArray *array=[NSMutableArray array];
+        NSArray *arr=responseObject[@"data"];
+        if (arr.count) {
+            for (NSDictionary *dict in arr) {
+                NSArray *arr2=dict[@"data"];
+                if (arr2.count>0) {
+                    for (NSDictionary *dict2 in arr2) {
+                        LSChannel *channel=[LSChannel objectWithKeyValues:dict2];
+                        [array addObject:channel];
+                        
+                    }
+                }
+            }
+        }
+    
+
         if (success) {
-            success(channels);
+            success(array);
         }
     } failure:^(NSError *error) {
         if (failure) {
@@ -49,29 +63,23 @@ static int i=0;
  */
 +(void)getCHannelMusicWithChannelID:(NSString*)channelID Success:(void(^)(NSArray*array))success failure:(void(^)(NSError*error))failure
 {
-    NSMutableDictionary *param=[NSMutableDictionary dictionary];
-    param[@"app_name"]=@"radio_desktop_win";
-    param[@"version"]=@100;
-    param[@"channel"]=@"196";
-    param[@"type"]=@"n";
-    [LSHttpTool GET:@"http://www.douban.com/j/app/radio/people" parameters:param success:^(id responseObject) {
-//        NSLog(@"responseObject=%@",responseObject);
+   
+    NSString *url=[NSString stringWithFormat:@"http://fm.api.ttpod.com/vipradiosong?num=150&tagid=%@&app=ttpod&v=v8.0.1.2015091618&uid=&mid=iPhone7,1&f=f320&s=s310&imsi=&hid=&splus=9.0&active=1&net=2&openudid=17d5bcecf6ab1038818fefba634092be93a2829c&idfa=A04F9D23-1399-4FBB-93B0-AE747E6715FC&utdid=Vfwq4CLLI7wDAIM4GEJ4Bkg3&alf=201200&bundle_id=com.ttpod.music&latitude=&longtitude=",channelID];
+    [LSHttpTool GET:url parameters:nil success:^(id responseObject) {
+        NSArray *arr=responseObject[@"data"];
         if (success) {
             
-            NSArray *arr=responseObject[@"song"];
             NSMutableArray *arrM=[NSMutableArray array];
             for (NSDictionary *dict in arr) {
-
+//
                 LSMusicModel *model=[[LSMusicModel alloc]init];
-                model.name=dict[@"title"];
-                model.name=[NSString stringWithFormat:@"%d",random()%10];
-                model.singer=dict[@"artist"];
-                model.songUrl=dict[@"url"];
-                model.albumPic=dict[@"picture"];
+                model.name=dict[@"song_name"];
+                model.singer=dict[@"singer_name"];
+                model.songUrl=[dict[@"url_list"] lastObject][@"url"];
                 [arrM addObject:model];
             }
             success(arrM);
-           
+        
         }
         
     } failure:^(NSError *error) {

@@ -34,6 +34,7 @@
     [super viewDidLoad];
     self.title=@"歌曲搜索";
     UISearchBar *searchBar=[[UISearchBar alloc]init];
+    searchBar.frame=CGRectMake(0, 0, 100, 40);
     searchBar.delegate=self;
     self.navigationItem.titleView=searchBar;
 //    LSMusicModel *model=[[LSMusicModel alloc]init];
@@ -74,22 +75,22 @@
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     
-    NSDictionary *dict=[NSDictionary dictionaryWithContentsOfFile:  [[NSBundle mainBundle]pathForResource:@"music.plist" ofType:nil]];
-
-    
-    NSArray * list = dict[@"data"][@"data"][@"list"];
-    NSMutableArray * musicArray = [NSMutableArray array];
-    for (NSDictionary *dict in list) {
-        LSMusicModel *model=[[LSMusicModel alloc]init];
-        model.name=dict[@"name"];
-        model.songUrl=dict[@"songUrl"];
-        model.singer=dict[@"singer"];
-        model.albumPic=dict[@"albumPic"];
-        [musicArray addObject:model];
-    }
-    self.musics=musicArray;
-    [self.tableView reloadData];
-    return;
+//    NSDictionary *dict=[NSDictionary dictionaryWithContentsOfFile:  [[NSBundle mainBundle]pathForResource:@"music.plist" ofType:nil]];
+//
+//    
+//    NSArray * list = dict[@"data"][@"data"][@"list"];
+//    NSMutableArray * musicArray = [NSMutableArray array];
+//    for (NSDictionary *dict in list) {
+//        LSMusicModel *model=[[LSMusicModel alloc]init];
+//        model.name=dict[@"name"];
+//        model.songUrl=dict[@"songUrl"];
+//        model.singer=dict[@"singer"];
+//        model.albumPic=dict[@"albumPic"];
+//        [musicArray addObject:model];
+//    }
+//    self.musics=musicArray;
+//    [self.tableView reloadData];
+//    return;
         [searchBar resignFirstResponder];
     NSDictionary * par = @{
                            @"s":searchBar.text,

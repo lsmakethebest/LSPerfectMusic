@@ -12,4 +12,5 @@
 
 +(instancetype)sharedPlayBottomView;
 +(CGFloat)height;
+- (IBAction)nextBtn:(UIButton *)sender ;
 @end

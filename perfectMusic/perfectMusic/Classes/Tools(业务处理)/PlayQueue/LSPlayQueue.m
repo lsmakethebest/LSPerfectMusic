@@ -56,17 +56,18 @@ static LSPlayQueue * _instance=nil;
     }else {
         _queue=[self.tool getFavorListMusic:listName];
     }
-    if (musicModel==nil) {
-        self.currentIndex=index;
-    }else {
-        //遍历歌曲获取下标
-        for (int i=0; i<self.queue.count ; i++) {
-            LSMusicModel *model=self.queue[i];
-            if ([musicModel.name  isEqualToString:model.name]&&[musicModel.singer isEqualToString:model.singer]) {
-                self.currentIndex=i;
-            }
-        }
-    }
+//    if (musicModel==nil) {
+//        self.currentIndex=index;
+//    }else {
+//        //遍历歌曲获取下标
+//        for (int i=0; i<self.queue.count ; i++) {
+//            LSMusicModel *model=self.queue[i];
+//            if ([musicModel.name  isEqualToString:model.name]&&[musicModel.singer isEqualToString:model.singer]) {
+//                self.currentIndex=i;
+//            }
+//        }
+//    }
+    self.currentIndex=index;
     self.listName=listName;
     [self postMusicChangeNotification];
     
@@ -92,6 +93,12 @@ static LSPlayQueue * _instance=nil;
     [self postMusicChangeNotification];
     LSMusicModel *model=self.queue[nextIndex];
     return model;
+}
+-(void)setCurrentIndex:(NSInteger)currentIndex
+{
+    _currentIndex=currentIndex;
+    
+    
 }
 -(void)postMusicChangeNotification
 {

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="bBB-WE-VjZ" customClass="LSPlayerView">
+            <rect key="frame" x="0.0" y="0.0" width="465" height="281"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GNk-f2-CiL">
+                    <rect key="frame" x="0.0" y="0.0" width="465" height="281"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMk-ws-l96" userLabel="retry">
+                    <rect key="frame" x="202" y="95" width="61" height="61"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="61" id="FGT-8F-8Z7"/>
+                        <constraint firstAttribute="height" constant="61" id="nbW-tR-e9Z"/>
+                    </constraints>
+                    <state key="normal" image="movieRetryButton"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="播放出错,请重试" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4g-jO-eoY">
+                    <rect key="frame" x="170" y="158" width="124" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亮度" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfr-2E-YRS">
+                    <rect key="frame" x="192" y="150" width="80" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="O2C-Hu-OtV"/>
+                        <constraint firstAttribute="width" constant="80" id="aqQ-xw-54h"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="GNk-f2-CiL" firstAttribute="top" secondItem="bBB-WE-VjZ" secondAttribute="top" id="0ac-4J-49E"/>
+                <constraint firstItem="DMk-ws-l96" firstAttribute="centerX" secondItem="bBB-WE-VjZ" secondAttribute="centerX" id="NAY-S1-uFU"/>
+                <constraint firstItem="Hfr-2E-YRS" firstAttribute="centerY" secondItem="bBB-WE-VjZ" secondAttribute="centerY" constant="20" id="bEq-4l-AjV"/>
+                <constraint firstAttribute="bottom" secondItem="GNk-f2-CiL" secondAttribute="bottom" id="caT-LR-B25"/>
+                <constraint firstItem="GNk-f2-CiL" firstAttribute="leading" secondItem="bBB-WE-VjZ" secondAttribute="leading" id="di6-CU-rwp"/>
+                <constraint firstItem="Hfr-2E-YRS" firstAttribute="centerX" secondItem="bBB-WE-VjZ" secondAttribute="centerX" id="tYi-fd-F3I"/>
+                <constraint firstItem="F4g-jO-eoY" firstAttribute="top" secondItem="DMk-ws-l96" secondAttribute="bottom" constant="2" id="tf7-g7-P9f"/>
+                <constraint firstItem="DMk-ws-l96" firstAttribute="centerY" secondItem="bBB-WE-VjZ" secondAttribute="centerY" constant="-15" id="xMg-YI-b6d"/>
+                <constraint firstAttribute="trailing" secondItem="GNk-f2-CiL" secondAttribute="trailing" id="zdK-PU-Yoj"/>
+                <constraint firstItem="F4g-jO-eoY" firstAttribute="centerX" secondItem="bBB-WE-VjZ" secondAttribute="centerX" id="zeA-ci-HTx"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backgroundImageView" destination="GNk-f2-CiL" id="jRV-jw-wKu"/>
+                <outlet property="lightLabel" destination="Hfr-2E-YRS" id="9Wr-Jj-k6G"/>
+                <outlet property="retryButton" destination="DMk-ws-l96" id="AOm-k2-heS"/>
+                <outlet property="retryTipLabel" destination="F4g-jO-eoY" id="Mdd-Il-oK6"/>
+            </connections>
+            <point key="canvasLocation" x="104.5" y="127.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="movieRetryButton" width="61" height="61"/>
+    </resources>
+</document>

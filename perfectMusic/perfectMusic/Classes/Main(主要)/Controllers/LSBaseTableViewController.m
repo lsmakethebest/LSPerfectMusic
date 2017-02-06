@@ -38,6 +38,12 @@
     return 0;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    UIEdgeInsets inset=self.tableView.contentInset;
+    self.tableView.contentInset=UIEdgeInsetsMake(inset.top, inset.left, inset.bottom+70, inset.right);
+}
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];

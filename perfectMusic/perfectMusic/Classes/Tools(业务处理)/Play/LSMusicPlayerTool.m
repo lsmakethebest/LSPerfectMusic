@@ -19,6 +19,8 @@ static LSMusicPlayerTool* tool;
 @property (nonatomic, strong) AVAudioPlayer* player;
 @property (nonatomic, strong) NSTimer* timer;
 @property (nonatomic, assign, getter=isFirst) BOOL first;
+@property (nonatomic, assign) BOOL interrupted;
+@property (nonatomic, strong) LSMusicModel *model;
 @end
 @implementation LSMusicPlayerTool
 
@@ -30,8 +32,21 @@ static LSMusicPlayerTool* tool;
         AVAudioSession* session = [[AVAudioSession alloc] init];
         [session setActive:YES error:NULL];
         [session setCategory:AVAudioSessionCategoryPlayback error:NULL];
+        
     });
     return tool;
+}
+
+- (void)handle:(NSNotification*)note
+{
+    
+    AVAudioSessionInterruptionType key=[note.userInfo[AVAudioSessionInterruptionTypeKey] longLongValue];
+    if (key==AVAudioSessionInterruptionTypeBegan) {
+        [[LSMusicPlayerTool sharedMusicPlayerTool] pause];
+    }
+    else if (key == AVAudioSessionInterruptionTypeEnded) {
+        [[LSMusicPlayerTool sharedMusicPlayerTool] resume];
+    }
 }
 + (instancetype)allocWithZone:(struct _NSZone*)zone
 {
@@ -42,31 +57,37 @@ static LSMusicPlayerTool* tool;
     return tool;
 }
 
-- (void)playWithURL:(NSURL*)url
+- (void)playWithModel:(LSMusicModel *)model
 {
 
+    self.model=model;
+    NSString *urlStr=[LSMusicList  urlWithString:model.name];
+    NSURL *url=[NSURL URLWithString:urlStr];
     self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:NULL];
     self.player.delegate = self;
     self.state = LSMusicPlayerToolPlayStatePrepare;
+    [self.player prepareToPlay];
     [self.player play];
-    [self setPlayingInfoWithUrl:url];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handle:) name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];//中断
+    
+    [self setPlayingInfoWithModel:model time:0];
     self.state = LSMusicPlayerToolPlayStatePlaying;
     if (self.timer == nil) {
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(progress) userInfo:nil repeats:YES];
     }
 }
-- (void)setPlayingInfoWithUrl:(NSURL*)url
+- (void)setPlayingInfoWithModel:(LSMusicModel*)model time:(NSInteger)currentTime
 {
     //    设置后台播放时显示的东西，例如歌曲名字，图片等
     //    <MediaPlayer/MediaPlayer.h>
-    NSString *name=[[url.absoluteString componentsSeparatedByString:@"/"]lastObject];
-    name=[name stringByRemovingPercentEncoding];
-    name=[name substringToIndex:name.length-4];
+    
     MPMediaItemArtwork* artWork = [[MPMediaItemArtwork alloc] initWithImage:[UIImage imageNamed:@"1"]];
     NSString* time = [NSString stringWithFormat:@"%lf", self.player.duration];
-    NSDictionary* dic = @{ MPMediaItemPropertyTitle : url.absoluteString,
-        MPMediaItemPropertyArtist : name,
+    NSDictionary* dic = @{ MPMediaItemPropertyTitle : model.name,
+        MPMediaItemPropertyArtist : model.singer,
         MPMediaItemPropertyArtwork : artWork,
+        MPNowPlayingInfoPropertyElapsedPlaybackTime:@(currentTime),
         MPMediaItemPropertyPlaybackDuration : time
     };
     [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:dic];
@@ -81,17 +102,25 @@ static LSMusicPlayerTool* tool;
 - (void)playAtPosition:(CGFloat)position
 {
     self.player.currentTime = position * self.player.duration;
+    [self setPlayingInfoWithModel:self.model time:position * self.player.duration];
 }
 - (void)pause
 {
     [self.player pause];
+    
+    [self setPlayingInfoWithModel:self.model time:self.player.currentTime];
     [self.timer invalidate];
     self.timer = nil;
     self.state = LSMusicPlayerToolPlayStatePause;
+    
 }
 - (void)resume
 {
+
+    
+    [self.player prepareToPlay];
     [self.player play];
+       [self setPlayingInfoWithModel:self.model time:self.player.currentTime];
     if (self.timer == nil) {
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(progress) userInfo:nil repeats:YES];
     }

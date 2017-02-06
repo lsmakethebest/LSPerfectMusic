@@ -18,9 +18,6 @@
  
  */
 @interface LSChannel : NSObject
-@property (nonatomic, copy) NSString *abbr_en;
-@property (nonatomic, copy) NSString *channel_id;
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *name_en;
-@property (nonatomic, copy) NSString *seq_id;
+@property (nonatomic, copy) NSString *tag_id;
+@property (nonatomic, copy) NSString *tag_name;
 @end

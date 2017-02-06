@@ -27,7 +27,7 @@
 +(instancetype)downloadMangerCell:(UITableView *)tableView
 {
     LSDownloadMangerCell *cell=[tableView dequeueReusableCellWithIdentifier:@"download"];
-   
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     ACPStaticImagesAlternative * myOwnImages = [ACPStaticImagesAlternative new];
     [myOwnImages updateColor:cell.downloadView.tintColor];
     [cell.downloadView setImages:myOwnImages];

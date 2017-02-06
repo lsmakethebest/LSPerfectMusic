@@ -44,5 +44,11 @@
     self.datas =[[self.tool getAllLikeMusic] mutableCopy];
     [self.tableView reloadData];
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    LSMusicModel *model=self.datas[self.tableView.indexPathForSelectedRow.row];
+    [[LSPlayQueue sharedPlayQueue] setPlayQueue:LSAllLikeList currentIndex:model orIndex:indexPath.row];
+}
 @end

@@ -38,7 +38,7 @@
     return cover;
     
 }
--(void)awakeFromNib
+-(void)awakeFromNib//
 {
     [self addTarget:self action:@selector(tapClick) forControlEvents:UIControlEventTouchUpInside];
 }

@@ -98,7 +98,7 @@ static LSPlayBottomView *_view=nil;
         {
             NSInteger index=[LSPlayQueue sharedPlayQueue].currentIndex;
             LSMusicModel *model=[LSPlayQueue sharedPlayQueue].queue[index];
-            [[LSMusicPlayerTool sharedMusicPlayerTool] playWithURL:[LSMusicList urlWithMusicModel:model]];
+            [[LSMusicPlayerTool sharedMusicPlayerTool] playWithModel:model];
         }
         default:
             break;
@@ -108,9 +108,7 @@ static LSPlayBottomView *_view=nil;
 
 - (IBAction)nextBtn:(UIButton *)sender {
     LSMusicModel *model=[[LSPlayQueue sharedPlayQueue] getNextModel];
-    NSString *urlStr=[LSMusicList  urlWithString:model.name];
-    NSURL *url=[NSURL URLWithString:urlStr];
-    [[LSMusicPlayerTool  sharedMusicPlayerTool] playWithURL:url];
+    [[LSMusicPlayerTool  sharedMusicPlayerTool] playWithModel:model];
     
 }
 //点击队列按钮
@@ -123,8 +121,12 @@ static LSPlayBottomView *_view=nil;
         queueView.y=LSScreenHeight;
         queueView.height=LSScreenHeight-self.height;
         [[self viewController].view insertSubview:queueView belowSubview:self];
+        queueView.backgroundColor=[UIColor clearColor];
         [UIView animateWithDuration:0.3 animations:^{
+            
             queueView.transform=CGAffineTransformMakeTranslation(0, -queueView.height-self.height);
+        } completion:^(BOOL finished) {
+            queueView.backgroundColor=queueView.backgroundColor=[UIColor colorWithWhite:0.2 alpha:0.2];
         }];
         self.queueView=queueView;
         self.press=YES;

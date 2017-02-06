@@ -47,12 +47,13 @@
     LSMusicModel *model=self.selectModel;
     [[LSMusicList musicList] delLocalMusic:model];
     self.datas=self.datas=[[LSMusicList musicList]getAllMusic];
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     LSMusicModel *model=self.datas[self.tableView.indexPathForSelectedRow.row];
-    [[LSPlayQueue sharedPlayQueue] setPlayQueue:LSAllLocalList currentIndex:model orIndex:0];
+    [[LSPlayQueue sharedPlayQueue] setPlayQueue:LSAllLocalList currentIndex:model orIndex:indexPath.row];
 }
 @end

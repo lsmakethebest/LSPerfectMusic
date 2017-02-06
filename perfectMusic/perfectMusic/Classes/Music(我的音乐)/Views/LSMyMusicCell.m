@@ -39,7 +39,7 @@
 //        UIView *view=[[UIView alloc]init];
 
 //        view.backgroundColor=[UIColor colorWithWhite:0.8 alpha:0.5];
-        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.selectionStyle=UITableViewCellSelectionStyleDefault;
     }
     return cell;
 }

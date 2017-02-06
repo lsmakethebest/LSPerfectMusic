@@ -24,7 +24,7 @@
 +(instancetype)queueView
 {
     LSQueueView *queueView=[[[NSBundle mainBundle]loadNibNamed:@"LSQueueView" owner:nil options:nil]lastObject];
-    queueView.backgroundColor=[UIColor colorWithWhite:0.2 alpha:0.2];
+
     return queueView;
 }
 -(void)awakeFromNib
@@ -111,6 +111,7 @@
 -(void)dismiss
 {
     
+    self.backgroundColor=[UIColor clearColor];
     [UIView animateWithDuration:0.3 animations:^{
         self.transform=CGAffineTransformMakeTranslation(0, LSScreenHeight);
     } completion:^(BOOL finished) {
@@ -118,6 +119,7 @@
     }];
     
 }
+
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
@@ -126,7 +128,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LSMusicModel *model=[LSPlayQueue sharedPlayQueue].queue[indexPath.row];
-    [[LSMusicPlayerTool sharedMusicPlayerTool] playWithURL:[LSMusicList urlWithMusicModel:model]];
-    [[LSPlayQueue sharedPlayQueue] setPlayQueue:[LSPlayQueue sharedPlayQueue].listName currentIndex:model orIndex:0];
+    [[LSMusicPlayerTool sharedMusicPlayerTool] playWithModel:model];
+    [[LSPlayQueue sharedPlayQueue] setPlayQueue:[LSPlayQueue sharedPlayQueue].listName currentIndex:model orIndex:indexPath.row];
 }
+
 @end

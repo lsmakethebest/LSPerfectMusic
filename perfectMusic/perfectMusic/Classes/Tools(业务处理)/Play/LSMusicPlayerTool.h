@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LSMusicModel.h"
 #define LSMusicPlayerToolProgressChangeNotification @"LSMusicPlayerToolProgressChangeNotification"
 #define LSMusicPlayerToolProgressChangeNotificationKey @"LSMusicPlayerToolProgressChangeNotificationKey"
 
@@ -23,11 +24,12 @@ typedef enum
     LSMusicPlayerToolPlayStateStop
     
 }LSMusicPlayerToolPlayState ;
+
 @interface LSMusicPlayerTool : NSObject
 @property(nonatomic,assign) LSMusicPlayerToolPlayState state;
 +(instancetype)sharedMusicPlayerTool;
 //播放
--(void)playWithURL:(NSURL*)url;
+-(void)playWithModel:(LSMusicModel*)model;
 //播放指定时间歌曲
 -(void)playAtPosition:(CGFloat)position;
 //暂停

@@ -11,7 +11,6 @@
 #import "LSHttpTool.h"
 #import "LSAccount.h"
 #import "LSAccountTool.h"
-#import "KVNProgress.h"
 #import "LSAccount.h"
 @interface LSRegisterController ()
 @property (weak, nonatomic) IBOutlet UITextField *accountName;
@@ -72,7 +71,7 @@
 //        NSString *res=dict2[@"res"];
         //        if( [res isEqualToString:@"1"]){
         
-        [KVNProgress showSuccessWithStatus:@"注册成功"];
+        [MBProgressHUD showSuccess:@"注册成功"];
         LSAccount *account=[[LSAccount alloc]init];
         account.loginName=dict[@"loginName"];
         account.nickName=dict[@"nickName"];
@@ -86,7 +85,7 @@
         //        }
     } failure:^(NSError *error) {
         NSLog(@"%@",error.localizedDescription);
-        [KVNProgress showSuccessWithStatus:@"注册失败"];
+        [MBProgressHUD showSuccess:@"注册失败"];
     }];
     
     

@@ -30,6 +30,7 @@
     }
     return _tool;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title=self.listName;
@@ -51,6 +52,6 @@
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     LSMusicModel *model=self.datas[self.tableView.indexPathForSelectedRow.row];
-    [[LSPlayQueue sharedPlayQueue] setPlayQueue:self.listName currentIndex:model orIndex:0];
+    [[LSPlayQueue sharedPlayQueue] setPlayQueue:self.listName currentIndex:model orIndex:indexPath.row];
 }
 @end

@@ -14,7 +14,6 @@
 
 #import "LSFavorTVC.h"
 #import "LSMusicList.h"
-#import "KVNProgress.h"
 #import "LSFavorListMusic.h"
 @interface LSFavorTVC ()
 @property (nonatomic, strong) NSArray *datas;
@@ -39,6 +38,8 @@
 
 -(void)setupNavBar
 {
+    //self.tableView.allowsMultipleSelection=YES;
+    //self.tableView.allowsMultipleSelectionDuringEditing=YES;
     self.title=@"我的歌单";
     UIBarButtonItem *item1=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addClick)];
     UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(delClick)];
@@ -59,17 +60,17 @@
         {
             if([[LSMusicList musicList] addFavorWithListName:name])
             {
-                [KVNProgress showSuccessWithStatus:@"添加成功"];
+                [MBProgressHUD showSuccess:@"添加成功"];
                 self.datas=[self.tool getAllFavorListName];
                 [self.tableView reloadData];
             }else
             {
-                [KVNProgress showErrorWithStatus:@"添加失败"];
+                [MBProgressHUD showError:@"添加失败"];
             }
         }
         else
         {
-            [KVNProgress showErrorWithStatus:@"请输入收藏列表名"];
+            [MBProgressHUD showError:@"请输入收藏列表名"];
         }
     }]];
     [ac addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -112,7 +113,7 @@
 {
     if (editingStyle==UITableViewCellEditingStyleDelete) {
         if(![self.tool delFavorWithListName:self.datas[indexPath.row]]){
-            [KVNProgress showErrorWithStatus:@"删除失败"];
+            [MBProgressHUD showError:@"删除失败"];
         }
         self.datas=[self.tool getAllFavorListName];
         [self.tableView reloadData];

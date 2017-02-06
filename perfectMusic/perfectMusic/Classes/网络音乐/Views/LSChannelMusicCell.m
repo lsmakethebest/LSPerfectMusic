@@ -23,10 +23,8 @@
 +(instancetype)chanMusicCellWithTableView:(UITableView *)tableView
 {
     LSChannelMusicCell *cell=[tableView dequeueReusableCellWithIdentifier:@"channelMusic"];
-    if (cell==nil) {
-        cell=[[self alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"channelMusic"];
         cell.backgroundColor=[UIColor clearColor];
-    }
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return cell;
 }
 +(CGFloat)cellHeight

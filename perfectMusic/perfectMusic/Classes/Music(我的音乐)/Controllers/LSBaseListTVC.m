@@ -17,7 +17,6 @@
 #import "LSMyMusicCell.h"
 #import "LSMusicPlayerTool.h"
 #import "LSCover.h"
-#import "KVNProgress.h"
 #import "LSPlayQueue.h"
 @interface LSBaseListTVC ()<LSCoverDelegate>
 @property (nonatomic, weak) LSCover *cover;
@@ -97,9 +96,9 @@
 
 
     if([[LSMusicList musicList] addMusic:self.selectModel listName:listName]){
-        [KVNProgress showSuccessWithStatus:@"添加成功"];
+        [MBProgressHUD showSuccess:@"添加成功"];
     }else{
-        [KVNProgress showErrorWithStatus:@"添加失败"];
+        [MBProgressHUD showError:@"添加失败"];
     }
     
 }
@@ -120,18 +119,18 @@
             {
                 
                 if([[LSMusicList musicList] addMusic:self.selectModel listName:ac.textFields[0].text]){
-                    [KVNProgress showSuccessWithStatus:@"添加成功"];
+                    [MBProgressHUD showSuccess:@"添加成功"];
                 }else{
-                [KVNProgress showErrorWithStatus:@"添加失败"];
+                [MBProgressHUD showError:@"添加失败"];
                 }
             }else
             {
-                [KVNProgress showErrorWithStatus:@"添加失败"];
+                [MBProgressHUD showError:@"添加失败"];
             }
         }
         else
         {
-            [KVNProgress showErrorWithStatus:@"请输入收藏列表名"];
+            [MBProgressHUD showError:@"请输入收藏列表名"];
         }
     }]];
     [ac addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -164,9 +163,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LSMusicModel *model=self.datas[indexPath.row];
-    NSString *urlStr=[LSMusicList  urlWithString:model.name];
-    NSURL *url=[NSURL URLWithString:urlStr];
-    [[LSMusicPlayerTool  sharedMusicPlayerTool] playWithURL:url];
+    [[LSMusicPlayerTool  sharedMusicPlayerTool] playWithModel:model];
 
 }
 -(void)remove

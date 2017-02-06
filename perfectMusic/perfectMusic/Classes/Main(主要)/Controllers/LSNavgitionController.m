@@ -36,10 +36,10 @@
     if (self.topViewController==self.viewControllers[0]) return;
     CGFloat x=[recognizer translationInView:self.view].x;
     if (x<0) return;
-    self.topViewController.view.userInteractionEnabled=NO;
     switch (recognizer.state) {
         case UIGestureRecognizerStateBegan:
         {
+            self.topViewController.view.userInteractionEnabled=NO;
             UIImageView *imageView=[[UIImageView alloc]init];
             imageView.image=[self.stack getTop];
             imageView.frame=self.view.window.bounds;
@@ -58,12 +58,10 @@
         }
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateEnded:
+            case UIGestureRecognizerStateFailed:
         {
             //打开用户交互
-            if (recognizer.state==UIGestureRecognizerStateEnded) {
-                
-                self.topViewController.view.userInteractionEnabled=YES;
-            }
+            self.topViewController.view.userInteractionEnabled=YES;
             if (x>=self.view.frame.size.width/2) {
                 [UIView animateWithDuration:0.2 animations:^{
                     self.iv.transform=CGAffineTransformIdentity;
@@ -140,10 +138,17 @@
     UIImage *image=UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+    
 }
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
+    if ([otherGestureRecognizer.view isKindOfClass:[UITableView class]]){
+        return NO;
+    }
+    if ([NSStringFromClass([otherGestureRecognizer.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        return NO;
+    }
     return YES;
 }
 

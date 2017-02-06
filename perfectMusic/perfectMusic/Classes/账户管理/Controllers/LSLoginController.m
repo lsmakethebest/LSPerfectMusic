@@ -9,7 +9,6 @@
 #import "LSLoginController.h"
 #import "LSHttpTool.h"
 #import "LSAccount.h"
-#import "KVNProgress.h"
 #import "LSAccountTool.h"
 @interface LSLoginController ()
 - (IBAction)loginClick:(UIButton *)sender;
@@ -50,7 +49,8 @@
         NSDictionary *dict=responseObject;
         NSLog(@"resonseObject=%@",responseObject);
         if ([dict[@"status"] isEqualToString:@"0" ]) {
-            [KVNProgress showSuccessWithStatus:@"登陆成功"];
+
+            [ MBProgressHUD   showSuccess:@"登陆成功"];
             LSAccount *account=[[LSAccount alloc]init];
             account.iconURL=dict[@"iconURL"];
             account.nickName=dict[@"nickName"];
@@ -61,7 +61,7 @@
             [self dismissViewControllerAnimated:YES completion:nil];
         }
         else {
-        [KVNProgress showSuccessWithStatus:@"用户名或密码错误"];
+        [MBProgressHUD showSuccess:@"用户名或密码错误"];
         }
     } failure:^(NSError *error) {
 

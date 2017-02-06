@@ -31,6 +31,7 @@
     [super viewDidLoad];
     [self.tableView addHeaderWithTarget:self action:@selector(refresh)];
     [self setupNavigationBar];
+    [self.tableView headerBeginRefreshing];
     
 }
 
@@ -70,7 +71,6 @@
 }
 -(void)refresh
 {
-    self.tmpMusic=[NSMutableArray array];
     [self getMusics];
     
 }
@@ -81,28 +81,12 @@
 -(void)getMusics
 {
     
-    [LSChannelTool getCHannelMusicWithChannelID:self.channel.channel_id Success:^(NSArray *array) {
-        for (LSMusicModel *music1 in array) {
-            BOOL v=YES;
-            for (LSMusicModel *music2 in self.tmpMusic)
-            {
-                if ([music1.singer isEqual:music2.singer ]&&[music1.name isEqual:music2.name])
-                {
-                    v=NO;
-                }
-            }
-            if (v) {
-                [self.tmpMusic addObject:music1];
-            }
-            if (self.tmpMusic.count==10) {
-                self.musics=self.tmpMusic;
-                [self.tableView headerEndRefreshing];
-                [self.tableView reloadData];
-            }
-   
-        }
-         [self getMusics];
+    [LSChannelTool getCHannelMusicWithChannelID:self.channel.tag_id Success:^(NSArray *array) {
         
+        [self.tableView headerEndRefreshing];
+        self.musics=array;
+        
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
          NSLog(@"%@",error.localizedDescription);
         [self.tableView headerEndRefreshing];

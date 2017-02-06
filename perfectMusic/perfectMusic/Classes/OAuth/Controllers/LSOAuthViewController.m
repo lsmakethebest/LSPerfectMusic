@@ -20,11 +20,10 @@
 #import "LSAccount.h"
 #import "LSDoubanUser.h"
 #import "LSChooseRootController.h"
-#import "MBProgressHUD+MJ.h"
+#import "MBProgressHUD+Add.h"
 #import "LSHttpTool.h"
 #import "LSRegisterController.h"
 #import "LSAccessTokenTool.h"
-#import "KVNProgress.h"
 #define LSBaseUrl @"https://www.douban.com/service/auth2/auth"
 #define LSClient_id @"0105595a51ceb79203100c0ef56c26b6"
 #define LSRedirect_uri @"http://www.douban.com/people/itbighome/"
@@ -70,19 +69,19 @@
     if (v) {
         
         if (code==nil) {
-            [KVNProgress showErrorWithStatus:@"拒绝授权"];
+            [MBProgressHUD showError:@"拒绝授权"];
             
             
         }else{
             
             [LSAccessTokenTool accessTokenWithCode:code success:^(LSDoubanAccount *account) {
-                [KVNProgress showErrorWithStatus:@"授权成功"];
+                [MBProgressHUD showSuccess:@"授权成功"];
                 
                 
                 [self isFirstWithDoubanAccount:account];
                 
             } failure:^(NSError *error) {
-                [KVNProgress showErrorWithStatus:error.localizedDescription];
+                [MBProgressHUD showError:error.localizedDescription];
                 
             }];
         }

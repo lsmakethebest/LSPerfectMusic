@@ -30,7 +30,7 @@
 -(void)setChannel:(LSChannel *)channel
 {
     _channel=channel;
-    self.textLabel.text=channel.name;
+    self.textLabel.text=channel.tag_name;
 }
 
 @end

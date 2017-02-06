@@ -5,20 +5,9 @@
 #import "UIImage+Image.h"
 #import "NSString+Size.h"
 #import "NSString+Time.h"
-#define LSKeyWindow [UIApplication sharedApplication].keyWindow
-#define LSTitleFont [UIFont systemFontOfSize:14]
-#define LSCellMargin 10
-#define LSMicroMargin 5
-#define LSNameFont [UIFont systemFontOfSize:14]
-#define LSTimeFont [UIFont systemFontOfSize:12]
-#define LSSourceFont [UIFont systemFontOfSize:12]
-#define LSTextFont [UIFont systemFontOfSize:14]
-#define LSScreenWidth [UIScreen mainScreen].bounds.size.width
-#define LSScreenHeight [UIScreen mainScreen].bounds.size.height
+#import "AppKey.h"
+#import "MBProgressHUD+Add.h"
 
-//保存列表名和下标
-#define LSSaveListNameKey @"LSSaveListName"
-#define LSSavePlayIndexKey @"LSSavePlayIndexKey"
 
 // ...表示宏定义的可变参数
 // __VA_ARGS__:表示函数里面的可变参数
