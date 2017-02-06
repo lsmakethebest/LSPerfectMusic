@@ -301,7 +301,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wN9-gc-P2x">
+<<<<<<< HEAD
                                                     <rect key="frame" x="135" y="7" width="79" height="30"/>
+=======
+                                                    <rect key="frame" x="135" y="7" width="50" height="30"/>
+>>>>>>> origin/master
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="cPa-5o-Dw9"/>
                                                         <constraint firstAttribute="height" constant="30" id="jZR-wk-Mcd"/>
